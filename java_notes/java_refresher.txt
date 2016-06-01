@@ -1,0 +1,107 @@
+Java refresher notes
+
+ABSTRACT CLASSES VS. INTERFACES
+	Abstract classes contain at least one abstract method - it's functionality is not defined in the main class and must be done by any extending classes.
+
+	Interfaces have ZERO concrete methods - any class implementing an interface must define all of its methods, AND ALL OF THESE METHODS MUST BE PUBLIC.
+
+	You can implement multiple interfaces though. A child can only extend one parent. - EXCEPT JAVA 8 SUPPORTS MULTIPLE INHERITANCE, SO
+
+	ALSO IN JAVA 8 YOU CAN ADD default METHODS TO INTERFACES WHICH HAVE DEFINED FUNCTIONALITY. This means interfaces are now more flexible and less painful to code - 
+		if you add to it later you don't have to update the interface and every single implementing class.
+
+	More on abstract classes vs. interfaces: http://www.programmerinterview.com/index.php/java-questions/interface-vs-abstract-class/
+
+WHAT IS POLYMORPHISM?
+	It means things in Java can take different forms. Overloading methods (i.e. having multiple methods with the same name) is your key example.
+	
+MULTITHREADING (aka CONCURRENCY)
+	You can have multiple process and threads running simultaneously in your Java app. This is something supported natively.
+		A thread is sometimes called a lightweight process. Processes are bigger in scope.
+		
+	Each java Thread is an instance of the Thread class. You can directly control thread creation and management in your app by instantiating the Thread class when needed,
+		or abstract it by passing an apps tasks to an executor. (class.execute())
+	
+	To create a thread, you either need to provide a Runnable object (implement Runnable interface) or create a subclass of Thread (extend Thread class). 
+		Remember to call Thread.start() to start the thread.
+		
+		The Runnable object (example):
+		public class HelloRunnable implements Runnable {
+			public void run() {
+				System.out.println("Hello from a thread!");
+			}
+
+			public static void main(String args[]) {
+				(new Thread(new HelloRunnable())).start();
+			}
+		}
+		
+		The Thread subclass (example):		
+		public class HelloThread extends Thread {
+
+			public void run() {
+				System.out.println("Hello from a thread!");
+			}
+
+			public static void main(String args[]) {
+				(new HelloThread()).start();
+			}
+		}
+		
+		The first is more flexible, because you're implementing an interface rather than extending a class.
+	
+	Use Thread.sleep(int milliseconds) to pause the current thread for the specified period. You'd do this to make room for other threads that might need to take priority.
+		Like if they're time-sensitive or something. If an interrupt from another thread happens it will end the sleep session and throw an InterruptException - remember to catch it.
+		
+	INTERRUPTS? - yeah, this is when the thread receives an indication it should stop doing what it's doing and do something else. It's up to you to decide what the thread should do
+		when it receives an interrupt, but the most common action is to terminate the thread. (Just like I'm about to be from E*Trade. Ha. Ha.)
+		
+		try {
+			Thread.sleep(4000);
+			} catch (InterruptedException e) {
+				// We've been interrupted: no more messages.
+				return;
+		}
+	
+		If a thread goes a long time without invoking a method that throws InterruptedException, it needs to periodically invoke Thread.interrupted(), which returns true if the thread
+			has received an interrupt.
+	
+
+STATICS
+	Static variables are associated with the class they are defined in, rather than any declared instances of it.
+		In other words, there is only one instance of that variable.
+		
+	Static variables can be referenced by class name, like Bicycle.staticVar, as well as by object, like thisBike.staticVar.
+	
+	There are also static methods. Similar to static variables, they can (and should) be referenced by class name.
+		A good use for a static method is to access a static field.
+		
+		"One rule-of-thumb: ask yourself "does it make sense to call this method, even if no Obj has been constructed yet?" If so, it should definitely be static."
+		http://stackoverflow.com/questions/2671496/java-when-to-use-static-methods
+	
+	A static final variable is a constant. It has one instance and it can't be changed.
+	
+	more on Statics: https://docs.oracle.com/javase/tutorial/java/javaOO/classvars.html
+	
+	SINGLETONS - they're kind of like static classes i guess?
+		There can only be one instance of a singleton object across your entire project.
+			Use a singleton for things you KNOW you are only going to want/need/have EXACTLY ONE of.
+		
+		Like for a shared resource like (people keep saying a printer spooler).
+		
+		more on singletons: http://www.tutorialspoint.com/java/java_using_singleton.htm
+		
+		finally, the singleton:
+		
+		public class ClassicSingleton {
+		   private static ClassicSingleton instance = null;
+		   protected ClassicSingleton() {
+			  // Exists only to defeat instantiation.
+		   }
+		   public static ClassicSingleton getInstance() {  //you see? if there's no instance, create it. Otherwise, there's an instance; return it.
+			  if(instance == null) {
+				 instance = new ClassicSingleton();
+			  }
+			  return instance; 
+		   }
+		}

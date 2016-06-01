@@ -1,0 +1,14 @@
+JAVA DESIGN PATTERNS
+resource: http://www.fluffycat.com/Java-Design-Patterns/
+resource: http://www.tutorialspoint.com/design_pattern/
+resource: https://www.udemy.com/java-design-patterns-tutorial/
+
+caveofprogramming.com/
+
+
+There are three types of Design Patterns in Java:
+	1. Creational Patterns - create objects while hiding the creation logic rather than instantiating objects directly.
+		This gives program more flexibility in deciding which objects need to be created for a given use case.
+	2. Structural patterns - 
+	3. Behavioral patterns - 
+	4. J2EE patterns
