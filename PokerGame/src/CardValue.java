@@ -17,7 +17,7 @@ public enum CardValue {
     KING(13),
     ACE (14);
 
-    public final int value;
+    public final int value; //THIS SHOULD NOT BE CHANGED. EVER.
 
     CardValue(int value){
         this.value = value;

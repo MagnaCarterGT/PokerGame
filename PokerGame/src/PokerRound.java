@@ -24,7 +24,7 @@ public class PokerRound {
             for (Player p : players){
                 Card dealtCard = dealer.dealCard();
                 while(cardsDealt.contains(dealtCard)){ //make sure this card hasn't already been dealt
-                    //System.out.println("MULT! " + dealtCard.toString());
+                    System.out.println("MULT! " + dealtCard.toString());
                     dealtCard = dealer.dealCard();
                 }
                 cardsDealt.add(dealtCard);

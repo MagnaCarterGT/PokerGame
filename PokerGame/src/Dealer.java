@@ -14,22 +14,22 @@ public class Dealer {
     }
 
     public Card dealCard(){
-        String suit;
+        char suit;
         CardValue cardRank;
         
         int rankInt = selectRank.nextInt(13) + 2;
         int suitInt = selectSuit.nextInt(4);
 
         switch(suitInt){
-            case 0: suit = "S";//"♠";
+            case 0: suit = '♠';
                 break;
-            case 1: suit = "H";//"♥";
+            case 1: suit = '♥';
                 break;
-            case 2: suit = "D";//"♦";
+            case 2: suit = '♦';
                 break;
-            case 3: suit = "C";//"♣";
+            case 3: suit = '♣';
                 break;
-            default: suit = "S";//"♠";
+            default: suit = '♠';
                 break;
         }
 

@@ -41,10 +41,10 @@ public class PokerHand {
      */
     public void sortCards(){
         Card tempCard;
-        //int maxIndex;
+        int maxIndex;
 
         for(int i = 0; i<5; i++){
-            int maxIndex = i;
+            maxIndex = i;
             for(int j = i; j<5; j++){
                 if(cards[maxIndex].rank.value<cards[j].rank.value) maxIndex = j;
             }
@@ -113,7 +113,7 @@ public class PokerHand {
 
     public boolean isFlush(){
         boolean yesFlush = true;
-        String matchCard = cards[0].suit;
+        char matchCard = cards[0].suit;
         for(int i=1; i<5; i++){
             if(cards[i].suit != matchCard) return false;
         }

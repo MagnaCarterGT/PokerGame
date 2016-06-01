@@ -24,8 +24,8 @@ public class handEvaluator {
             rating = 100;
 
             tiebreaker = hand.cards[pairIndex].rank.value;
-            //in 2, 3, and 4 of a kind, the pair/trips/quads card breaks the tie.
-            //in 2 pair, the highest pair breaks, but we'll always reach that one first, so no extra logic is necessary
+            /*in 2, 3, and 4 of a kind, the pair/trips/quads card breaks the tie.
+             in 2 pair, the highest pair breaks, but we'll always reach that one first, so no extra logic is necessary*/
             if(hand.hasTwoPair(pairIndex)){
                 if (hand.hasFullHouse()) return 600 + hand.cards[2].rank.value;
                 /* in a Full House, the trips card breaks the tie. since a full house can only be
@@ -52,4 +52,3 @@ public class handEvaluator {
         return rating + tiebreaker;
     }
 }
-

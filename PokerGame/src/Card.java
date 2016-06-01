@@ -4,9 +4,9 @@
 public class Card {
 
     public CardValue rank;
-    public String suit;
+    public char suit;
 
-    public Card (CardValue rank, String suit){
+    public Card (CardValue rank, char suit){
         this.rank = rank;
         this.suit = suit;
     }
@@ -31,11 +31,11 @@ public class Card {
      * Because of this we need to override hashCode() and equals().
      */
     public int hashCode(){
-        return rank.value + (int)suit.charAt(0);
+        return rank.value + (int)suit;
     }
 
     public boolean equals(Object o){
         Card compare = (Card)o;
-        return rank.equals(compare.rank) && suit.equals(compare.suit);
+        return rank.equals(compare.rank) && suit ==(compare.suit);
     }
 }
